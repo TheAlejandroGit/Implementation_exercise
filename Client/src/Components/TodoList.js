@@ -73,7 +73,7 @@ const TodoList = () => {
 
                 <form onSubmit={addTask}>    
                     <input type="text" placeholder='New Task' onChange={(event)=>{setName(event.target.value)}} value={name} required/>
-                    <button >Add</button>
+                    <button className='add-btn' >Add</button>
                 </form> 
 
                 </div>

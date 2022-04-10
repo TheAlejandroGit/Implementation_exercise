@@ -13,7 +13,7 @@ const TaskEdit = () => {
             <div className='edit'>
                 <h3>Editing Task </h3>
                 <input type="text" />
-                <button>Safe</button>
+            <Link to={"/"}><button>Safe</button></Link>
                 
             <Link to={"/"}><button>Cancel</button></Link>
                 

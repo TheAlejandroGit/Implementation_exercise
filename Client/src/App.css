@@ -57,3 +57,19 @@
 .form{
   margin: 30px;
 }
+
+button{
+  margin: 10px;
+  background-color: rgb(169, 164, 164,0.5);
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+h3{
+margin: 10px;
+}
+
+input{
+  padding: 8px;
+}
