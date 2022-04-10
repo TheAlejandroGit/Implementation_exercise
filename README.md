@@ -4,4 +4,4 @@ react: 18.0.0\
 axios: 0.26.1\
 react-router-dom:6.3.0\
 Node: 14.18.1\
-Mysql\
+Mysql 8.0.28
