@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import { useEffect } from 'react';
 const TodoList = () => {
     const [name,setName]=useState("");
     const [list,setList]=useState([]);
 
-    
+   
+    useEffect(()=>{
 
+      axios.get('http://localhost:3001/list')
+      .then(res=>setList(res.data))
+      
+  },[]);
+    
     const getList=()=>{
         
         axios.get('http://localhost:3001/list')
@@ -33,6 +40,18 @@ const TodoList = () => {
         const reset=()=>{
             setName("");
         }
+
+        const deleteTask=(id)=>{
+          axios.delete(`http://localhost:3001/delete/${id}`)
+          .then((
+           (response)=>{
+             
+             getList()
+           }
+       
+         ))
+          
+        };
       
     return (
         <div className='wrap'> 
@@ -45,10 +64,13 @@ const TodoList = () => {
                         <input type="checkbox" />
                         <p ><b>{val.name}</b> </p>
                         <Link to={"/edit"}> <button>Edit</button></Link>
+                        <button onClick={()=>{deleteTask(val.id)}}>Delete</button>
+                      
                         </div>
                         ))
                 }
                 <div className='form'> 
+
                 <form onSubmit={addTask}>    
                     <input type="text" placeholder='New Task' onChange={(event)=>{setName(event.target.value)}} value={name} required/>
                     <button >Add</button>

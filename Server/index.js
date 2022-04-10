@@ -15,10 +15,11 @@ const db=mysql.createConnection({
 
 app.post("/create",(req,res)=>{
     const name=req.body.name;
+   
     
 
     db.query(
-        "INSERT INTO todo_list (name, check) VALUES (?,?)",
+        "INSERT INTO todo_list (name) VALUES (?)",
         [name],
         (err,result)=>{
             if(err){
@@ -46,6 +47,33 @@ app.get('/list', (req, res)=>{
 
 })
 
+app.delete("/delete/:id", (req,res)=>{
+    const id=req.params.id;
+    db.query("DELETE FROM todo_list WHERE id=?",id,(err,result)=>{
+        if(err){
+            console.log(err);
+        } else{
+            res.send(result);
+        }
+    });
+});
+
+app.put('/update',(req, res)=>{
+    const id= req.body.id;
+    const name=req.body.name;
+
+    db.query("UPDATE todo_list SET name=? where id=?",
+    [name,id],
+    (err,result)=>{
+        if(err){
+            console.log(err);
+        } else{
+            res.send(result);
+        }
+    }
+
+    );
+});
 
 app.listen(3001, ()=>{
     console.log("Todo bien todo correcto en el puerto 3001");
